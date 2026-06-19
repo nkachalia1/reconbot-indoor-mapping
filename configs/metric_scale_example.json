@@ -1,0 +1,17 @@
+{
+  "anchor_name": "tape_0_to_4_ft",
+  "anchor_distance_m": 1.2192,
+  "anchor_reconstructed_units": 0.71,
+  "checks": [
+    {
+      "name": "door_width",
+      "actual_m": 0.9144,
+      "reconstructed_units": 0.54
+    },
+    {
+      "name": "hallway_width",
+      "actual_m": 1.2192,
+      "reconstructed_units": 0.73
+    }
+  ]
+}
