@@ -44,3 +44,57 @@ telemetry, and transfer experiments—not dense reconstruction.
 
 **Why:** This creates a credible embedded-systems contribution with measurable
 latency, throughput, memory, CPU, and temperature constraints.
+
+## ADR-006: Separate Matching From Mapper Experiments
+
+**Decision:** Persist the closed COLMAP feature/match database before mapping
+and provide explicit `baseline` and `fast` mapper profiles.
+
+**Why:** Feature extraction and matching are deterministic, expensive stages
+that do not need to be repeated when testing bundle-adjustment tradeoffs. The
+baseline profile prioritizes geometry quality. The fast profile reduces local
+and global optimization work for shorter experimental feedback loops.
+
+**Consequence:** Fast-profile outputs are exploratory until their registration
+rate, reprojection error, loop-closure drift, and dimensional accuracy are
+compared quantitatively against the baseline.
+
+## ADR-007: Use Adaptive Keyframes as a Measured Optimization
+
+**Decision:** Select keyframes using sharpness, tracked-feature overlap,
+normalized optical-flow motion, and bounded temporal coverage. Preserve a
+deterministic 5 FPS candidate set as the comparison baseline.
+
+**Why:** Uniform sampling spends compute on near-duplicate and blurred frames.
+Adaptive selection reduced the first dataset from 870 to 275 images and reduced
+global mapping time from 11.7 minutes to 2.0 minutes.
+
+**Consequence:** Every decision is written to CSV/JSON, including rejected
+frames and forced coverage fallbacks. Speed claims must include registration
+and continuity metrics, not runtime alone.
+
+## ADR-008: Do Not Densify Disconnected Environment Geometry
+
+**Decision:** Block dense reconstruction and metric scaling when the hallway
+and room do not share one validated sparse coordinate frame.
+
+**Why:** Independent sparse components can each look plausible while having an
+unknown relative scale, rotation, and translation. Combining them visually
+would not produce a defensible environment map.
+
+**Consequence:** `hallway_room_001` is retained as a documented observability
+failure. Its point clouds are diagnostic artifacts, not a completed room model.
+See `hallway_room_001_results.md` for the quantitative evidence.
+
+## ADR-009: Permit an Explicitly Constrained Visualization Stitch
+
+**Decision:** Produce one provisional metric map by independently scaling each
+component from the visible 4 ft tape and aligning consecutive boundary camera
+poses.
+
+**Why:** This preserves usable geometry and provides one viewable artifact
+without inventing image correspondences or claiming joint bundle adjustment.
+
+**Consequence:** The report includes both camera-pose continuity and local
+geometry overlap. A zero camera-pose gap does not pass the map-quality gate
+when nearby sparse surfaces fail to overlap.

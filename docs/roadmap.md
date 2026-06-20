@@ -5,14 +5,18 @@
 - [x] versioned dataset manifest
 - [x] source-video fingerprint and full-decode inspection
 - [x] deterministic frame extraction with blur/brightness reports
-- [ ] validate the iPhone hallway dataset
-- [ ] automate COLMAP sparse reconstruction
-- [ ] parse sparse model metrics and camera poses
+- [x] validate the iPhone hallway dataset
+- [x] automate COLMAP sparse reconstruction
+- [x] parse sparse model metrics and camera poses
+- [x] adaptive keyframe selection with blur, motion, and coverage metrics
+- [x] document the `hallway_room_001` component-split failure
+- [ ] capture `hallway_room_002` with continuous translational parallax
 
 ## Phase 2 — Metric Reconstruction
 
-- [ ] annotate tape endpoints in registered images
-- [ ] calculate global metric scale
+- [x] detect tape endpoints in registered images
+- [x] calculate per-component metric scale
+- [x] export a provisional constrained continuous metric map
 - [ ] measure independent room dimensions
 - [ ] generate an accuracy report
 - [ ] enforce sparse quality gates before dense processing

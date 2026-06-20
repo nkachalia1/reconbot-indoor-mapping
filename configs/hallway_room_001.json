@@ -1,15 +1,15 @@
 {
-  "schema_version": 1,
   "dataset_id": "hallway_room_001",
-  "video_path": "data/raw/hallway_room_001.mp4",
+  "video_path": "data/raw/hallway_room_001.mov",
   "capture_device": "iPhone 14",
   "environment": "one hallway and one connected room",
-  "route_description": "Closed-loop walkthrough returning to the starting position and view.",
+  "route_description": "closed loop returning to the starting position and view",
   "metric_references": [
     {
       "name": "tape_0_to_4_ft",
       "distance_m": 1.2192,
       "description": "Tape measure endpoints at 0 ft and 4 ft visible in the video."
     }
-  ]
+  ],
+  "schema_version": 1
 }

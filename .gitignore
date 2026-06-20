@@ -3,7 +3,11 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
+.pytest*/
 .ruff_cache/
+
+# Reproducible Colab transfer bundles are generated from ignored datasets.
+colab_dense_inputs/
 
 data/raw/*
 !data/raw/.gitkeep
